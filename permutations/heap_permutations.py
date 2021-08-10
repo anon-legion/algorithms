@@ -40,7 +40,8 @@ def get_permutations(s):
         """
         
         if n == 1:
-            result.append(''.join(heap_list))
+            if not ''.join(heap_list) in result:
+                result.append(''.join(heap_list))
             return
         else:
             generate(n - 1, heap_list)
@@ -93,9 +94,10 @@ def get_permutations_nonrecursive(s):
         c = [] # array of int
         
         for i in range(n):
-            c.append(0)
+            c.append(0)        
         
-        result.append(''.join(heap_list))
+        if not ''.join(heap_list) in result:
+            result.append(''.join(heap_list))
         
         i = 1
         while i < n:
@@ -104,7 +106,8 @@ def get_permutations_nonrecursive(s):
                     swap(heap_list, 0, i)
                 else:
                     swap(heap_list, c[i], i)
-                result.append(''.join(heap_list))
+                if not ''.join(heap_list) in result:
+                    result.append(''.join(heap_list))
                 c[i] += 1
                 i = 1
             else:
@@ -114,7 +117,9 @@ def get_permutations_nonrecursive(s):
     generate(len(temp), temp)
     return result
 
-print(f"Result of recursive heap algorithm:\n{get_permutations('123')}")
+
+x = '123'
+print(f"Result of recursive heap algorithm:\n{get_permutations(x)}")
 print()
-print(f"Result of non-recursive heal algorithm:\n{get_permutations_nonrecursive('123')}")
+print(f"Result of non-recursive heap algorithm:\n{get_permutations_nonrecursive(x)}")
     
