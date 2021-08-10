@@ -8,7 +8,9 @@ const getPermutations = str => {
 
     const generate = (n , heapArr) => {
         if (n === 1) {
-            result.push(heapArr.join(''));
+            if (result.indexOf(heapArr.join('')) === -1) {
+                result.push(heapArr.join(''));
+            }            
             // console.log(result);
             return;
         }
@@ -30,6 +32,5 @@ const getPermutations = str => {
     return result;
 }
 
-let x = '123';
+let x = '166';
 console.log(`Permutations of ${x} using Heap algo:\n${getPermutations(x)}`);
-console.log(x)
